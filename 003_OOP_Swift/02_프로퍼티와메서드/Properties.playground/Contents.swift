@@ -49,3 +49,60 @@ let minkuPositionL: PositionL = PositionL(name: "Minku")
 // point 프로퍼티의 CoordinatePointL이 생성
 print(minkuPositionL.point)
 
+
+//-------------------------------------------------
+// 3. 연산 프로퍼티
+
+struct CoordinatePointMethod {
+    var x: Int
+    var y: Int
+    
+    // 대칭점을 구하는 메서드 - 접근자
+    func oppositePoint() -> CoordinatePointMethod {
+        return CoordinatePointMethod(x: -x, y: -y)
+    }
+    
+    // 대칭점을 설정하는 메서드 - 설정자
+    mutating func setOppositePoint(_ opposite: CoordinatePointMethod) {
+        x = -opposite.x
+        y = -opposite.y
+    }
+}
+
+var minkuPositionMethod: CoordinatePointMethod = CoordinatePointMethod(x: 10, y: 20)
+
+print(minkuPositionMethod)
+print(minkuPositionMethod.oppositePoint())
+
+minkuPositionMethod.setOppositePoint(CoordinatePointMethod(x: 15, y: 10))
+
+print(minkuPositionMethod)
+
+
+struct CoordinatePointC {
+    var x: Int
+    var y: Int
+    
+    var oppositePoint: CoordinatePointC { // 연산 프로퍼티
+        // 접근자
+        get {
+            return CoordinatePointC(x: -x, y: -y)
+        }
+        
+        // 생성자
+        set(opposite) { // opposite를 생략하고 newValue를 사용해도 됨
+            x = -opposite.x
+            y = -opposite.y
+        }
+    }
+}
+
+var minkuPointC: CoordinatePointC = CoordinatePointC(x: 10, y: 20)
+
+print(minkuPointC)
+print(minkuPointC.oppositePoint)
+
+minkuPointC.oppositePoint = CoordinatePointC(x: -10, y: -20)
+
+print(minkuPointC)
+print(minkuPointC.oppositePoint)
