@@ -106,3 +106,68 @@ minkuPointC.oppositePoint = CoordinatePointC(x: -10, y: -20)
 
 print(minkuPointC)
 print(minkuPointC.oppositePoint)
+
+
+//-------------------------------------------------
+// 4. 프로퍼티 감시자
+
+class Account {
+    var credit: Int = 0 {
+        willSet {
+            print("잔액이 \(credit)에서 \(newValue)로 변경 될 예정입니다.") // - 1  - 4
+        }
+        
+        didSet {
+            print("잔액이 \(oldValue)에서 \(credit)로 변경 되었습니다.") // - 2 - 5
+        }
+    }
+    
+    var dollorValue: Double {
+        get {
+            return Double(credit)
+        }
+        
+        set {
+            credit = Int(newValue * 1000)
+            print("잔액을 \(newValue)달러로 변경 중입니다.") // - 6
+        }
+    }
+}
+
+class ForiegnAccount: Account {
+    override var dollorValue: Double {
+        willSet {
+            print("잔액이 \(dollorValue)달러에서 \(newValue)달러로 변경될 예정입니다.") //  - 3
+        }
+        
+        didSet {
+            print("잔액이 \(oldValue)달러에서 \(dollorValue)달러로 변경되었습니다.") // -7
+        }
+    }
+}
+
+let myAccount: ForiegnAccount = ForiegnAccount()
+
+// 잔액이 0원에서 1000원으로 변경될 예정입니다. - 1
+myAccount.credit = 1000
+// 잔액이 0원에서 1000원으로 변경되었습니다. - 2
+
+//잔액이 1000.0달러에서 2.0달러로 변경될 예정입니다. - 3
+//잔액이 1000에서 2000로 변경 될 예정입니다. - 4
+//잔액이 1000에서 2000로 변경 되었습니다. - 5
+myAccount.dollorValue = 2.0 //잔액을 2.0달러로 변경 중입니다. - 6
+//잔액이 1000.0달러에서 2000.0달러로 변경되었습니다. - 7
+
+
+//-------------------------------------------------
+// 5. 타입 프로퍼티
+
+class AClass {
+    static var typeProperty: Int = 0
+}
+
+AClass.typeProperty = 123
+print(AClass.typeProperty)
+
+let aClass = AClass()
+//aClass.typeProperty // 타입프로퍼티는 인스턴스에서는 접근할수 없음
