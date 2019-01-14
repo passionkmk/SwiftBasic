@@ -46,7 +46,7 @@ if let optionalBinding: Int? = minku.address?.building?.room?.number {
 
 
 //----------------------------------------------------
-// 2. 빠른종료
+// 2. 빠른종료
 func getNumber() {
     guard let number = minku.address?.building?.room?.number else {
         return
