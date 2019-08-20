@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/xcode
-# Edit at https://www.gitignore.io/?templates=xcode
+# Created by https://www.gitignore.io/api/xcode,xcodeinjection
+# Edit at https://www.gitignore.io/?templates=xcode,xcodeinjection
 
 ### Xcode ###
 # Xcode
@@ -27,12 +27,21 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
-### Xcode Patch ###
+## Xcode Patch
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
+
+### Xcode Patch ###
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.gitignore.io/api/xcode
+### XcodeInjection ###
+# Code Injection
+# After new code Injection tools there's a generated folder /iOSInjectionProject
+# https://github.com/johnno1962/injectionforxcode
+
+iOSInjectionProject/
+
+# End of https://www.gitignore.io/api/xcode,xcodeinjection
